@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <!--Spring 创建 Action bean-->
+    <constant name="struts.objectFactory" value="spring"/>
+
+    <package name="user" extends="struts-default" namespace="/">
+        <action name="users" class="net.tuzkimo.ssh.action.UserAction" method="execute">
+            <result name="success">/WEB-INF/views/users.jsp</result>
+        </action>
+    </package>
+
+</struts>
