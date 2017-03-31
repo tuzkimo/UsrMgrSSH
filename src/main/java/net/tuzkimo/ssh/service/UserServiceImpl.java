@@ -8,20 +8,37 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
+ * 用户服务实现类
  * Created by tuzkimo on 2017-03-21.
  */
 @Service
 public class UserServiceImpl implements UserService {
 
+    private final UserDao userDao;
+
     @Autowired
-    private UserDao userDao;
+    public UserServiceImpl(UserDao userDao) {
+        this.userDao = userDao;
+    }
 
     public User getUserById(int id) {
-        return this.userDao.getUserById(id);
+        return userDao.getUserById(id);
     }
 
     public List<User> getAllUsers() {
-        return this.userDao.getAllUsers();
+        return userDao.getAllUsers();
+    }
+
+    public boolean addUser(User user) {
+        return userDao.addUser(user);
+    }
+
+    public boolean editUser(User user) {
+        return userDao.updateUser(user);
+    }
+
+    public boolean deleteUserById(int id) {
+        return userDao.deleteUserById(id);
     }
 
 }

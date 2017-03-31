@@ -28,7 +28,6 @@ body {
     border-bottom: 1px solid #ccc;
     border-radius: 5px;
 }
-
 .main .title span {
     display: inline-block;
     padding: 0 8px;
@@ -39,7 +38,7 @@ body {
 }
 
 /*table*/
-table {
+table.tab {
     width: 100%;
 }
 
@@ -48,8 +47,48 @@ table {
     border-collapse: collapse;
 }
 
-.tab th, .tab th {
+.tab td, .tab th {
     height: 26px;
     line-height: 26px;
     padding-left: 5px;
+}
+
+/*link*/
+a {
+    text-decoration: none;
+}
+
+/*button*/
+.abtn {
+    display: inline-block;
+    height: 18px;
+    line-height: 18px;
+    background: #006ac1;
+    color: #fff;
+    padding: 0 5px;
+    border-radius: 5px;
+}
+
+.abtn:hover {
+    background: orangered;
+    color: #fff;
+}
+
+p {
+    padding: 5px 0;
+}
+
+/*form*/
+form {
+    margin: 10px 0;
+}
+
+fieldset {
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+}
+
+fieldset legend {
+    margin-left: 10px;
+    font-size: 16px;
 }

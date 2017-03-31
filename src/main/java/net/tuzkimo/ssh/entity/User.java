@@ -3,6 +3,7 @@ package net.tuzkimo.ssh.entity;
 import javax.persistence.*;
 
 /**
+ * 用户实体
  * Created by tuzkimo on 2017-03-20.
  */
 @Entity
@@ -28,7 +29,7 @@ public class User {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }

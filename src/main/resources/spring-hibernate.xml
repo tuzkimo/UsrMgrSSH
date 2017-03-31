@@ -84,6 +84,10 @@
 
             <tx:method name="get*" propagation="SUPPORTS" read-only="true"/>
 
+            <tx:method name="add*" propagation="REQUIRED"/>
+            <tx:method name="edit*" propagation="REQUIRED"/>
+            <tx:method name="delete*" propagation="REQUIRED"/>
+
             <!--其它用默认处理-->
             <tx:method name="*"/>
 

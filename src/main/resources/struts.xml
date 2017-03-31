@@ -9,13 +9,35 @@
     <!--Spring 创建 Action bean-->
     <constant name="struts.objectFactory" value="spring"/>
 
-    <package name="default" extends="struts-default" namespace="/">
+    <package name="default" extends="struts-default">
 
         <!--默认跳转页-->
         <default-action-ref name="index"/>
 
-        <action name="index" class="net.tuzkimo.ssh.action.UserAction" method="execute">
-            <result name="success">/WEB-INF/views/index.jsp</result>
+        <action name="index" class="net.tuzkimo.ssh.action.UserAction">
+            <result>/WEB-INF/views/index.jsp</result>
+        </action>
+
+        <action name="add">
+            <result>/WEB-INF/views/addUser.jsp</result>
+        </action>
+
+        <action name="addSave" class="net.tuzkimo.ssh.action.UserAction" method="addSave">
+            <result type="redirectAction">index</result>
+            <result name="input" type="chain">add</result>
+        </action>
+
+        <action name="edit" class="net.tuzkimo.ssh.action.UserAction" method="edit">
+            <result>/WEB-INF/views/editUser.jsp</result>
+        </action>
+
+        <action name="editSave" class="net.tuzkimo.ssh.action.UserAction" method="editSave">
+            <result type="redirectAction">index</result>
+            <result name="input" type="chain">add</result>
+        </action>
+
+        <action name="delete" class="net.tuzkimo.ssh.action.UserAction" method="delete">
+            <result type="redirectAction">index</result>
         </action>
 
     </package>
