@@ -13,6 +13,7 @@ public class User {
     private String name;
     private String password;
     private String description;
+    private String photo;
 
     public User() {
     }
@@ -64,6 +65,14 @@ public class User {
         this.description = description;
     }
 
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -71,6 +80,7 @@ public class User {
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
                 ", description='" + description + '\'' +
+                ", photo='" + photo + '\'' +
                 '}';
     }
 
