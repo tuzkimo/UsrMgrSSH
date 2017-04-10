@@ -22,6 +22,7 @@
                 <th>id</th>
                 <th>name</th>
                 <th>description</th>
+                <th>photo</th>
                 <th>operation</th>
             </tr>
             </thead>
@@ -31,8 +32,10 @@
                     <td><s:property value="id"/></td>
                     <td><s:property value="name"/></td>
                     <td><s:property value="description"/></td>
+                    <td><img src="<s:url value="/photos/%{photo}"/>" title="<s:property value="name"/>" alt="<s:property value="name"/>"/></td>
                     <td>
                         <a class="abtn" href="<s:url action="edit"><s:param name="id" value="id"/></s:url>">Edit</a>
+                        <a class="abtn" href="<s:url action="upPhoto"><s:param name="id" value="id"/></s:url>">UpPhoto</a>
                         <a class="abtn" href="<s:url action="delete"><s:param name="id" value="id"/></s:url>">Delete</a>
                     </td>
                 </tr>

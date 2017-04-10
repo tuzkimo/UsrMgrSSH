@@ -19,7 +19,6 @@
         <s:textfield label="Name" name="user.name" value="%{user.name}"/>
         <s:password label="Password" name="user.password" value="%{user.password}"/>
         <s:textarea label="Description" name="user.description" value="%{user.description}"/>
-        <s:file label="Photo" name="upload"/>
         <s:submit/>
     </s:form>
     <p>

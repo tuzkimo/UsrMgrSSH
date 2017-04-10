@@ -23,7 +23,6 @@
         </action>
 
         <action name="addSave" class="net.tuzkimo.ssh.action.UserAction" method="addSave">
-            <param name="savePath">/upload</param>
             <result type="redirectAction">index</result>
             <result name="input" type="chain">add</result>
         </action>
@@ -39,6 +38,16 @@
 
         <action name="delete" class="net.tuzkimo.ssh.action.UserAction" method="delete">
             <result type="redirectAction">index</result>
+        </action>
+
+        <action name="upPhoto" class="net.tuzkimo.ssh.action.UserAction" method="upPhoto">
+            <result>/WEB-INF/views/upPhoto.jsp</result>
+        </action>
+
+        <action name="upPhotoSave" class="net.tuzkimo.ssh.action.UserAction" method="upPhotoSave">
+            <param name="path">/photos</param>
+            <result type="redirectAction">index</result>
+            <result name="input" type="chain">upPhoto</result>
         </action>
 
     </package>

@@ -27,9 +27,11 @@ public class UserAction extends ActionSupport {
     private User user;
     private List<User> users;
 
-    private File upload;
-    private String uploadFileName;
-    private String savePath;
+    private File photo;
+    private String photoFileName;
+    private String path;
+
+    private String message;
 
     @Autowired
     public UserAction(UserService userService) {
@@ -60,28 +62,36 @@ public class UserAction extends ActionSupport {
         this.users = users;
     }
 
-    public File getUpload() {
-        return upload;
+    public File getPhoto() {
+        return photo;
     }
 
-    public void setUpload(File upload) {
-        this.upload = upload;
+    public void setPhoto(File photo) {
+        this.photo = photo;
     }
 
-    public String getUploadFileName() {
-        return uploadFileName;
+    public String getPhotoFileName() {
+        return photoFileName;
     }
 
-    public void setUploadFileName(String uploadFileName) {
-        this.uploadFileName = uploadFileName;
+    public void setPhotoFileName(String photoFileName) {
+        this.photoFileName = photoFileName;
     }
 
-    public String getSavePath() {
-        return savePath;
+    public String getPath() {
+        return path;
     }
 
-    public void setSavePath(String savePath) {
-        this.savePath = savePath;
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public String execute() {
@@ -90,20 +100,6 @@ public class UserAction extends ActionSupport {
     }
 
     public String addSave() throws IOException {
-        String realPath = ServletActionContext.getServletContext().getRealPath(savePath);
-
-        if (upload != null) {
-            File saveFile = new File(realPath, getUploadFileName());
-
-            if (!saveFile.getParentFile().exists()) {
-                saveFile.getParentFile().mkdir();
-            }
-
-            FileUtils.copyFile(upload, saveFile);
-
-            user.setPhoto(uploadFileName);
-        }
-
         if (!userService.addUser(user)) {
             return INPUT;
         }
@@ -125,6 +121,59 @@ public class UserAction extends ActionSupport {
     public String delete() {
         userService.deleteUserById(id);
         return SUCCESS;
+    }
+
+    public String upPhoto() {
+        user = userService.getUserById(id);
+        return SUCCESS;
+    }
+
+    public String upPhotoSave() {
+
+        // 非空验证
+        if (photo == null) {
+            setMessage("Please upload a photo.");
+            return INPUT;
+        }
+
+        // 文件类型验证
+        if (!(photoFileName.endsWith(".jpg") || photoFileName.endsWith(".png"))) {
+            setMessage("Sorry, we only accept jpg or png file.");
+            return INPUT;
+        }
+
+        // 获取目标用户
+        user = userService.getUserById(id);
+
+        // 获取储存路径
+        String savePath = ServletActionContext.getServletContext().getRealPath(path);
+
+        // 创建本地保存文件
+        File savePhoto = new File(savePath, photoFileName);
+
+        // 本地保存路径不存在则新建文件夹
+        if (!savePhoto.getParentFile().exists()) {
+            savePhoto.getParentFile().mkdir();
+        }
+
+        try {
+
+            // 上传文件保存到服务器本地
+            FileUtils.copyFile(photo, savePhoto);
+
+            // 更新服务器记录
+            user.setPhoto(photoFileName);
+
+            // 更新数据库记录
+            userService.editUser(user);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return INPUT;
+        }
+
+        return SUCCESS;
+
     }
 
 }
