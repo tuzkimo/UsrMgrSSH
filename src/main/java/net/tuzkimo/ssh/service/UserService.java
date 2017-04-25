@@ -14,6 +14,10 @@ public interface UserService {
 
     List<User> getAllUsers();
 
+    List<User> getUsersPaper(int skip, int size);
+
+    Long getUsersCount();
+
     boolean addUser(User user);
 
     boolean editUser(User user);

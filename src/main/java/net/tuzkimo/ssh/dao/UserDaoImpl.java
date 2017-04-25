@@ -35,6 +35,16 @@ public class UserDaoImpl implements UserDao {
         return getCurrentSession().createQuery("FROM User").list();
     }
 
+    public List<User> getUsersPaper(int skip, int size) {
+        return getCurrentSession().createQuery("FROM User", User.class)
+                .setFirstResult(skip).setMaxResults(size)
+                .list();
+    }
+
+    public Long getUsersCount() {
+        return (Long) getCurrentSession().createQuery("select count(id) from User").uniqueResult();
+    }
+
     public boolean addUser(User user) {
         Integer effectRows = (Integer) getCurrentSession().save(user);
         return effectRows >= 0;

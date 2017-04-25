@@ -27,6 +27,11 @@ public class UserAction extends ActionSupport {
     private User user;
     private List<User> users;
 
+    private int usersCount;
+    private Integer pageNo;
+    private Integer size;
+    private Integer pages;
+
     private File photo;
     private String photoFileName;
     private String path;
@@ -36,6 +41,7 @@ public class UserAction extends ActionSupport {
     @Autowired
     public UserAction(UserService userService) {
         this.userService = userService;
+        usersCount = userService.getUsersCount().intValue();
     }
 
     public Integer getId() {
@@ -90,12 +96,44 @@ public class UserAction extends ActionSupport {
         return message;
     }
 
-    public void setMessage(String message) {
+    private void setMessage(String message) {
         this.message = message;
     }
 
+    public Integer getPageNo() {
+        if (pageNo == null || pageNo < 1) {
+            setPageNo(1);
+        }
+        if (pageNo > getPages()) {
+            setPageNo(getPages());
+        }
+        return pageNo;
+    }
+
+    public void setPageNo(Integer pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public Integer getSize() {
+        return size;
+    }
+
+    public void setSize(Integer size) {
+        this.size = size;
+    }
+
+    public Integer getPages() {
+        if (usersCount % size == 0) {
+            pages = usersCount / size;
+        } else {
+            pages = usersCount / size + 1;
+        }
+        return pages;
+    }
+
     public String execute() {
-        users = userService.getAllUsers();
+        int skip = (getPageNo() - 1) * size;
+        users = userService.getUsersPaper(skip, size);
         return SUCCESS;
     }
 

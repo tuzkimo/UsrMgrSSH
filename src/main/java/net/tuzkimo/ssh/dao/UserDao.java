@@ -14,6 +14,10 @@ public interface UserDao {
 
     List<User> getAllUsers();
 
+    List getUsersPaper(int skip, int size);
+
+    Long getUsersCount();
+
     boolean addUser(User user);
 
     boolean updateUser(User user);

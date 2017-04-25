@@ -2,6 +2,7 @@ package net.tuzkimo.ssh.test;
 
 import net.tuzkimo.ssh.entity.User;
 import net.tuzkimo.ssh.service.UserService;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,17 @@ public class UserTest {
     public void getAllUsersTest() {
         List<User> users = this.userService.getAllUsers();
         System.out.println(users);
+    }
+
+    @Test
+    public void getUsersPaperTest() throws Exception {
+        List<User> users = userService.getUsersPaper(0, 5);
+        System.out.println(users);
+    }
+
+    @Test
+    public void getUsersCountTest() throws Exception {
+        Assert.assertTrue(userService.getUsersCount() == 6);
     }
 
     @Test
