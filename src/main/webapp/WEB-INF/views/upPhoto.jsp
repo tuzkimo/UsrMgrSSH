@@ -30,13 +30,13 @@
                 <input type="file" name="photo" id="photo">
             </p>
             <p>
-                <input type="submit" value="upload"/>
+                <input class="btn out" type="submit" value="upload"/>
             </p>
         </fieldset>
     </form>
     <p class="error"><s:property value="message"/></p>
     <p>
-        <a class="abtn" href="<s:url action="index"/>">Return</a>
+        <a class="abtn out" href="<s:url action="index"/>">Return</a>
     </p>
     <s:debug/>
 </div>

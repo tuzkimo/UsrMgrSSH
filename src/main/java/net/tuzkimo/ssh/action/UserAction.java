@@ -24,11 +24,12 @@ public class UserAction extends ActionSupport {
     private final UserService userService;
 
     private Integer id;
+    private Integer[] ids;
     private User user;
     private List<User> users;
 
     private int usersCount;
-    private Integer pageNo;
+    private int pageNo;
     private Integer size;
     private Integer pages;
 
@@ -50,6 +51,14 @@ public class UserAction extends ActionSupport {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer[] getIds() {
+        return ids;
+    }
+
+    public void setIds(Integer[] ids) {
+        this.ids = ids;
     }
 
     public User getUser() {
@@ -100,8 +109,8 @@ public class UserAction extends ActionSupport {
         this.message = message;
     }
 
-    public Integer getPageNo() {
-        if (pageNo == null || pageNo < 1) {
+    public int getPageNo() {
+        if (pageNo < 1) {
             setPageNo(1);
         }
         if (pageNo > getPages()) {
@@ -110,7 +119,7 @@ public class UserAction extends ActionSupport {
         return pageNo;
     }
 
-    public void setPageNo(Integer pageNo) {
+    public void setPageNo(int pageNo) {
         this.pageNo = pageNo;
     }
 
@@ -158,6 +167,11 @@ public class UserAction extends ActionSupport {
 
     public String delete() {
         userService.deleteUserById(id);
+        return SUCCESS;
+    }
+
+    public String deletes() {
+        userService.deleteUsersByIds(ids);
         return SUCCESS;
     }
 

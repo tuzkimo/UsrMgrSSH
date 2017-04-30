@@ -41,6 +41,10 @@
             <result type="redirectAction">index</result>
         </action>
 
+        <action name="deletes" class="net.tuzkimo.ssh.action.UserAction" method="deletes">
+            <result type="redirectAction">index</result>
+        </action>
+
         <action name="upPhoto" class="net.tuzkimo.ssh.action.UserAction" method="upPhoto">
             <result>/WEB-INF/views/upPhoto.jsp</result>
         </action>

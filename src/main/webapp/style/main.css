@@ -74,13 +74,29 @@ a {
     border-radius: 5px;
 }
 
-.abtn:hover {
+.btn {
+    height: 18px;
+    line-height: 18px;
+    background: #006ac1;
+    color: #fff;
+    padding: 0 8px;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer ;
+}
+
+.abtn:hover,.btn:hover {
     background: orangered;
     color: #fff;
 }
 
 p {
     padding: 5px 0;
+}
+
+a.out,input.out {
+    height: 23px;
+    line-height: 23px;
 }
 
 /*form*/

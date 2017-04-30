@@ -19,10 +19,10 @@
         <s:textfield label="Name" name="user.name" value="%{user.name}"/>
         <s:password label="Password" name="user.password" value="%{user.password}"/>
         <s:textarea label="Description" name="user.description" value="%{user.description}"/>
-        <s:submit/>
+        <s:submit class="btn out"/>
     </s:form>
     <p>
-        <a class="abtn" href="<s:url action="index"/>">Return</a>
+        <a class="abtn out" href="<s:url action="index"/>">Return</a>
     </p>
     <s:debug/>
 </div>

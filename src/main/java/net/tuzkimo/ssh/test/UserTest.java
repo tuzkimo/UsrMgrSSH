@@ -67,4 +67,8 @@ public class UserTest {
         System.out.println("Deleted user? " + result);
     }
 
+    @Test
+    public void deleteUsersTest() throws Exception {
+        Assert.assertTrue(userService.deleteUsersByIds(new Integer[]{13, 14}));
+    }
 }

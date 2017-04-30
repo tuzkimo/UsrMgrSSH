@@ -24,4 +24,6 @@ public interface UserService {
 
     boolean deleteUserById(int id);
 
+    boolean deleteUsersByIds(Integer[] ids);
+
 }
