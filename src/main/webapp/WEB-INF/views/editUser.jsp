@@ -15,17 +15,35 @@
 <body>
 <div class="main">
     <h2 class="title"><span>Edit User</span></h2>
-    <s:form action="editSave">
-        <s:hidden name="user.id" value="%{id}"/>
-        <s:textfield label="Name" name="user.name" value="%{user.name}"/>
-        <s:password label="Password" name="user.password" value="%{user.password}"/>
-        <s:textarea label="Description" name="user.description" value="%{user.description}"/>
-        <s:submit class="btn out"/>
+    <s:form action="editSave" method="POST" validate="true" theme="simple">
+        <fieldset>
+            <legend>user</legend>
+            <s:hidden name="user.id" value="%{id}"/>
+            <p>
+                <label for="name">Name: </label>
+                <s:textfield key="user.name" value="%{user.name}" id="name"/>
+                <span><s:fielderror cssClass="error"><s:param>user.name</s:param></s:fielderror></span>
+            </p>
+            <p>
+                <label for="password">Password: </label>
+                <s:password key="user.password" value="%{user.password}" id="password"/>
+                <span><s:fielderror cssClass="error"><s:param>user.password</s:param></s:fielderror></span>
+            </p>
+            <p>
+                <label for="description">Description: </label>
+                <s:textarea key="user.description" value="%{user.description}" id="description"/>
+                <span><s:fielderror cssClass="error"><s:param>user.description</s:param></s:fielderror></span>
+            </p>
+            <p>
+                <input class="btn out" type="submit" value="save">
+            </p>
+        </fieldset>
     </s:form>
     <p>
         <a class="abtn out" href="<s:url action="index"/>">Return</a>
     </p>
-    <s:debug/>
+    <script src="<s:url value="/scripts/jquery-3.1.1.min.js"/>"></script>
+    <script src="<s:url value="/scripts/validator.js"/>"></script>
 </div>
 </body>
 </html>

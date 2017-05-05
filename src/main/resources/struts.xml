@@ -25,7 +25,7 @@
 
         <action name="addSave" class="net.tuzkimo.ssh.action.UserAction" method="addSave">
             <result type="redirectAction">index</result>
-            <result name="input" type="chain">add</result>
+            <result name="input">/WEB-INF/views/addUser.jsp</result>
         </action>
 
         <action name="edit" class="net.tuzkimo.ssh.action.UserAction" method="edit">
@@ -34,7 +34,7 @@
 
         <action name="editSave" class="net.tuzkimo.ssh.action.UserAction" method="editSave">
             <result type="redirectAction">index</result>
-            <result name="input" type="chain">add</result>
+            <result name="input">/WEB-INF/views/editUser.jsp</result>
         </action>
 
         <action name="delete" class="net.tuzkimo.ssh.action.UserAction" method="delete">

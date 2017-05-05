@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+
+<validators>
+    <!--名称字段验证-->
+    <field name="user.name">
+
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message>名称不能为空</message>
+        </field-validator>
+
+        <field-validator type="stringlength">
+            <param name="maxLength">25</param>
+            <message>用户名不能超过 ${maxLength} 个字符</message>
+        </field-validator>
+
+        <field-validator type="regex">
+            <param name="regex"><![CDATA[^[\w\u4e00-\u9fa5]+$]]></param>
+            <message>名称只能包含中英文字符和数字</message>
+        </field-validator>
+
+    </field>
+    <!--密码字段验证-->
+    <field name="user.password">
+
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message>密码不能为空</message>
+        </field-validator>
+
+        <field-validator type="stringlength">
+            <param name="minLength">6</param>
+            <param name="maxLength">20</param>
+            <message>密码必须在 ${minLength} 到 ${maxLength} 位之间</message>
+        </field-validator>
+
+    </field>
+    <!--描述字段验证-->
+    <field name="user.description">
+
+        <field-validator type="regex">
+            <param name="regex"><![CDATA[^[^<>#&]*$]]></param>
+            <message><![CDATA[不能包含 < > # & 等非法字符]]></message>
+        </field-validator>
+
+    </field>
+</validators>

@@ -54,7 +54,6 @@
             </p>
         </form>
         <div class="pagination"></div>
-        <s:debug/>
     </div>
     <script>
         var pageNo = <s:property value="pageNo"/>;
