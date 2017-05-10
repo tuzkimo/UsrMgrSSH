@@ -58,4 +58,7 @@ public class UserServiceImpl implements UserService {
         return true;
     }
 
+    public User getUserByName(String name) {
+        return userDao.getUserByName(name);
+    }
 }

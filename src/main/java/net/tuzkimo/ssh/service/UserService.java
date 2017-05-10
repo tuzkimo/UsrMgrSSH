@@ -26,4 +26,6 @@ public interface UserService {
 
     boolean deleteUsersByIds(Integer[] ids);
 
+    User getUserByName(String name);
+
 }

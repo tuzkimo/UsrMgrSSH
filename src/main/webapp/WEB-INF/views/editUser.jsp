@@ -22,6 +22,7 @@
             <p>
                 <label for="name">Name: </label>
                 <s:textfield key="user.name" value="%{user.name}" id="name"/>
+                <span class="error"><s:property value="message"/></span>
                 <span><s:fielderror cssClass="error"><s:param>user.name</s:param></s:fielderror></span>
             </p>
             <p>

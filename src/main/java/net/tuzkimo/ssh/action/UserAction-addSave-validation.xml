@@ -17,7 +17,7 @@
         </field-validator>
 
         <field-validator type="regex">
-            <param name="regex"><![CDATA[^[\w\u4e00-\u9fa5]+$]]></param>
+            <param name="regex"><![CDATA[^[\w\u4e00-\u9fa5\s]+$]]></param>
             <message>名称只能包含中英文字符和数字</message>
         </field-validator>
 

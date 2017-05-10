@@ -71,4 +71,11 @@ public class UserDaoImpl implements UserDao {
         return true;
     }
 
+    @SuppressWarnings("unchecked")
+    public User getUserByName(String name) {
+        return (User) getCurrentSession()
+                .createQuery("FROM User WHERE name = :name")
+                .setParameter("name", name).setMaxResults(1).uniqueResult();
+    }
+
 }

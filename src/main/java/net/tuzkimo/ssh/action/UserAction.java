@@ -8,8 +8,7 @@ import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.List;
 
 /**
@@ -24,6 +23,7 @@ public class UserAction extends ActionSupport {
     private final UserService userService;
 
     private Integer id;
+    private String name;
     private Integer[] ids;
     private User user;
     private List<User> users;
@@ -38,6 +38,8 @@ public class UserAction extends ActionSupport {
     private String path;
 
     private String message;
+
+    private InputStream inputStream;
 
     @Autowired
     public UserAction(UserService userService) {
@@ -105,6 +107,18 @@ public class UserAction extends ActionSupport {
         return message;
     }
 
+    public InputStream getInputStream() {
+        return inputStream;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     private void setMessage(String message) {
         this.message = message;
     }
@@ -147,6 +161,10 @@ public class UserAction extends ActionSupport {
     }
 
     public String addSave() throws IOException {
+        if (userService.getUserByName(user.getName()) != null) {
+            setMessage("用户已存在");
+            return INPUT;
+        }
         if (!userService.addUser(user)) {
             return INPUT;
         }
@@ -159,6 +177,10 @@ public class UserAction extends ActionSupport {
     }
 
     public String editSave() {
+        if (userService.getUserByName(user.getName()) != null) {
+            setMessage("用户已存在");
+            return INPUT;
+        }
         if (!userService.editUser(user)) {
             return INPUT;
         }
@@ -226,6 +248,18 @@ public class UserAction extends ActionSupport {
 
         return SUCCESS;
 
+    }
+
+    /*
+     * 配合 AJAX 验证用户重名
+     */
+    public String checkName() throws UnsupportedEncodingException {
+        if (userService.getUserByName(name) != null) {
+            inputStream = new ByteArrayInputStream("0".getBytes("UTF-8"));
+        }/* else {
+            inputStream = new ByteArrayInputStream("1".getBytes("UTF-8"));
+        }*/
+        return SUCCESS;
     }
 
 }
