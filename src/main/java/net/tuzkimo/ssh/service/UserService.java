@@ -28,4 +28,6 @@ public interface UserService {
 
     User getUserByName(String name);
 
+    List<User> nativeSQL();
+
 }

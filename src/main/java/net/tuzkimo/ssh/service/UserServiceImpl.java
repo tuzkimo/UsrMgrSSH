@@ -61,4 +61,8 @@ public class UserServiceImpl implements UserService {
     public User getUserByName(String name) {
         return userDao.getUserByName(name);
     }
+
+    public List<User> nativeSQL() {
+        return userDao.nativeSQL();
+    }
 }

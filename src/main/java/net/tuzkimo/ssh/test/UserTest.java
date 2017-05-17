@@ -55,7 +55,7 @@ public class UserTest {
 
     @Test
     public void editUserTest() throws Exception {
-        User user = userService.getUserById(7);
+        User user = userService.getUserById(6);
         user.setPassword("sc123456");
         boolean result = userService.editUser(user);
         System.out.println("Edited user? " + result);
@@ -76,5 +76,10 @@ public class UserTest {
     public void getUserByNameTest() throws Exception {
         System.out.println(userService.getUserByName("Steve Curry"));
         Assert.assertTrue(userService.getUserByName("Steve Curry") != null);
+    }
+
+    @Test
+    public void nativeSQLTest() throws Exception {
+        System.out.println(userService.nativeSQL());
     }
 }

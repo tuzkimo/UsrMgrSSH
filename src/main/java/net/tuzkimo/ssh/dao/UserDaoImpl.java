@@ -1,9 +1,11 @@
 package net.tuzkimo.ssh.dao;
 
 import net.tuzkimo.ssh.entity.User;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.object.SqlQuery;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -76,6 +78,14 @@ public class UserDaoImpl implements UserDao {
         return (User) getCurrentSession()
                 .createQuery("FROM User WHERE name = :name")
                 .setParameter("name", name).setMaxResults(1).uniqueResult();
+    }
+
+    public List<User> nativeSQL() {
+        String sql = "SELECT * FROM (SELECT a.*, ROWNUM rn FROM (SELECT * FROM TBL_USER ORDER BY ID) a WHERE ROWNUM <= 5 ) b WHERE rn >= 1";
+        SQLQuery sqlQuery = getCurrentSession().createSQLQuery(sql);
+        sqlQuery.addEntity(User.class);
+        List<User> users = (List<User>) sqlQuery.list();
+        return users;
     }
 
 }

@@ -64,7 +64,10 @@
         </property>
 
         <!--自动扫描被标注的实体进行映射-->
-        <property name="packagesToScan" value="net.tuzkimo.ssh.entity"/>
+        <!--<property name="packagesToScan" value="net.tuzkimo.ssh.entity"/>-->
+        <property name="mappingLocations">
+            <value>classpath:/net/tuzkimo/ssh/entity/*.hbm.xml</value>
+        </property>
 
     </bean>
 

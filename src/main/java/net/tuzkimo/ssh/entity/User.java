@@ -7,11 +7,13 @@ import javax.persistence.*;
  * Created by tuzkimo on 2017-03-20.
  */
 @Entity
+@Table(name = "TBL_USER")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "SEQ_USER", sequenceName = "SEQ_USER")
+    private Integer id;
     @Column(nullable = false)
     private String password;
     @Column(nullable = false)
@@ -33,11 +35,11 @@ public class User {
         this.description = description;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

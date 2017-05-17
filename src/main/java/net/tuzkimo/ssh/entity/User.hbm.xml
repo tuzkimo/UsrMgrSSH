@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="net.tuzkimo.ssh.entity.User" table="tbl_user">
+
+        <id name="id" type="java.lang.Integer">
+            <generator class="increment"/>
+        </id>
+
+        <property name="name" not-null="true"/>
+        <property name="password" not-null="true"/>
+        <property name="description"/>
+        <property name="photo"/>
+
+    </class>
+
+    <sql-query name="listUsers">
+        <![CDATA[
+        SELECT * FROM
+        (SELECT a.*, ROWNUM rn
+        FROM (SELECT * FROM TBL_USER ORDER BY ID) a
+        WHERE ROWNUM <= :first
+        ) b
+        WHERE rn >= :last
+        ]]>
+    </sql-query>
+
+</hibernate-mapping>
