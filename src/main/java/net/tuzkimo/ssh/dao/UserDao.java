@@ -26,6 +26,6 @@ public interface UserDao {
 
     User getUserByName(String name);
 
-    List<User> nativeSQL();
+    List<User> nativeSQL(int first, int last);
     
 }

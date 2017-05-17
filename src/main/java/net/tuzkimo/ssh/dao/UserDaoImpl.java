@@ -43,6 +43,7 @@ public class UserDaoImpl implements UserDao {
                 .list();
     }
 
+    @SuppressWarnings("JpaQlInspection")
     public Long getUsersCount() {
         return (Long) getCurrentSession().createQuery("select count(id) from User").uniqueResult();
     }
@@ -80,10 +81,12 @@ public class UserDaoImpl implements UserDao {
                 .setParameter("name", name).setMaxResults(1).uniqueResult();
     }
 
-    public List<User> nativeSQL() {
-        String sql = "SELECT * FROM (SELECT a.*, ROWNUM rn FROM (SELECT * FROM TBL_USER ORDER BY ID) a WHERE ROWNUM <= 5 ) b WHERE rn >= 1";
+    public List<User> nativeSQL(int first, int last) {
+        String sql = "SELECT * FROM (SELECT a.*, ROWNUM rn FROM (SELECT * FROM TBL_USER ORDER BY ID) a WHERE ROWNUM <= :last ) b WHERE rn >= :first";
         SQLQuery sqlQuery = getCurrentSession().createSQLQuery(sql);
         sqlQuery.addEntity(User.class);
+        sqlQuery.setParameter("first", first);
+        sqlQuery.setParameter("last", last);
         List<User> users = (List<User>) sqlQuery.list();
         return users;
     }

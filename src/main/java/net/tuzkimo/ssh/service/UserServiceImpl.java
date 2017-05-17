@@ -62,7 +62,7 @@ public class UserServiceImpl implements UserService {
         return userDao.getUserByName(name);
     }
 
-    public List<User> nativeSQL() {
-        return userDao.nativeSQL();
+    public List<User> nativeSQL(int first, int last) {
+        return userDao.nativeSQL(first, last);
     }
 }

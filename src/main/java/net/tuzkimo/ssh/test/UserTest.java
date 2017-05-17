@@ -80,6 +80,6 @@ public class UserTest {
 
     @Test
     public void nativeSQLTest() throws Exception {
-        System.out.println(userService.nativeSQL());
+        System.out.println(userService.nativeSQL(6, 10));
     }
 }
